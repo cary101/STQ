@@ -1,0 +1,452 @@
+html, body, img, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, table {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.headDiv {
+    position: relative;
+    width: auto;
+    height: 30px;
+    padding-left: 10px;
+    background: ;
+    font: 14px Arial, Sans-serif;
+    line-height: 35px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.timeTable {
+    width: 100%;
+}
+
+.table_weeks {
+    text-align: center;
+    background: #EAF4FD;
+    font: ;
+    color: #2E6E9E;	
+}
+
+.table_weeks td {
+    height: 40px;
+	line-height:40px;
+	border:1px solid #DDD;
+}
+
+.week-title {
+
+}
+
+.allDay  td {
+    height: 15px;
+}
+
+.oneDay {
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+}
+
+.time-title {
+    text-align: right;
+    color: #666666;
+    font: 14px Arial, Sans-serif;
+    width: 60px;
+    vertical-align: top;
+    padding-top: 2px;
+    padding-right: 2px;
+    background: #F6F9FC;
+}
+
+.week-day td {
+    min-height: 13px;
+    border-right: 1px solid #DDDDDD;
+    padding-bottom: 5px;
+}
+
+.headBottomLine td {
+    background: #EAF4FD;
+    height: 8px;
+    border-bottom: #BBCCFF solid 1px;
+}
+
+.timeTable .solid td {
+    border-top: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    height: 30px;
+}
+
+.timeTable .dotted td {
+    height: 30px;
+    border-top: #DDDDDD dotted 1px;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+}
+
+.thisDay {
+    background: #FFF7D7;
+    border-left: 1px solid #FAD163;
+    border-right: 1px solid #FAD163;
+}
+
+.thisDayHead {
+    background: #FAD163;
+}
+
+/**********************���ѡ��css��ʽ***************************/
+.selectItem {
+    position: absolute;
+    cursor: pointer;
+}
+
+.selectItem .head {
+    height: 15px;
+    background: #465679;
+    border-right: solid #465679 1px;
+    border-left: solid #465679 1px;
+    font: 14px Arial, Sans-serif;
+    color: white;
+}
+
+.selectItem .content {
+    background: #7589b8;
+    border-right: solid #465679 1px;
+    border-left: solid #465679 1px;
+    font: 14px Arial, Sans-serif;
+    color: white;
+}
+
+.selectItem  table {
+    width: 100%;
+}
+
+.selectItem .content table td {
+    word-break: break-all;
+}
+
+.selectItem table .TC {
+    background: #465679;
+}
+
+.selectItem table .BC {
+    background: #7589b8;
+    border-bottom: solid #465679 1px;
+}
+
+.popItem {
+    position: absolute;
+    width: 420px;
+    height: 160px;
+    z-index: 200;
+}
+
+.popItem .label {
+    text-align: left;
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font: 13px Arial, Sans-serif;
+}
+
+.popItem .time {
+    text-align: left;
+    font: 13px Arial, Sans-serif;
+}
+
+.popItem .text {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-right: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    border-top: 1px solid #888888;
+    font: 13px Arial, Sans-serif;
+    height: 12px;
+    width: 280px;
+    line-height: 12px;
+}
+
+.popItem .operate {
+    margin-top: 25px;
+}
+
+.popItem .moreInfo {
+    margin-left: 8px;
+    height: 15px;
+    text-decoration: underline;
+    color: #2E6E9E;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 28px;
+}
+
+.popItem .line {
+    border-top: #DDDDDD 1px solid;
+    margin-top: 15px;
+}
+
+.popItem .viewOperate {
+    padding-top: 10px;
+}
+
+.popItem .viewOperate .moreInfo {
+    height: 15px;
+    text-decoration: underline;
+    color: #2E6E9E;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 28px;
+    float: right;
+}
+
+.popItem .viewOperate .delete {
+    height: 15px;
+    text-decoration: underline;
+    color: #2E6E9E;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 28px;
+}
+
+.monthTable {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.dayTr {
+    height: 80px;
+}
+
+.dayTr .dayTd {
+    border: 1px solid #DDDDDD;
+    vertical-align: top;
+    text-align: right;
+}
+
+.dayTr .holidayTd {
+    border: 1px solid #DDDDDD;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 22px;
+    background-color: #EEE;
+	color:#999;
+}
+
+.dayTr .workDayTd {
+    border: 1px solid #DDDDDD;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 22px;
+    background-color: white;
+}
+
+.dayTr .noday {
+    border: 1px solid #DDDDDD;
+    vertical-align: top;
+    text-align: right;
+}
+
+.dayTr .dayTime {
+    background: #F8F9FF;
+    font: 20px Arial, Sans-serif;
+    color: #666666;
+    padding-right: 5px;
+}
+
+.tempSelect {
+    background: #F0F3FF;
+}
+
+.itemTable {
+    width: 100%;
+}
+
+.itemTable td {
+    height: 100px;
+}
+
+/*************����ͼItems������ģ�*************/
+.dayItem_all {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1px;
+    font: 9px Arial, Sans-serif;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+}
+
+.dayItem_all tr {
+    border: 0px;
+}
+
+.dayItem_all tr td {
+    border: 0px;
+}
+
+.dayItem_all .TM {
+    height: 3px;
+    background: #465679;
+}
+
+.dayItem_all .ML {
+    height: 3px;
+    width: 3px;
+    background: #465679;
+}
+
+.dayItem_all .MM {
+    height: 8px;
+    background: #465679;
+    text-align: left;
+    font-size: 7px;
+    word-break: break-all;
+}
+
+.dayItem_all .MR {
+    height: 8px;
+    background: #465679;
+}
+
+.dayItem_all .BM {
+    height: 3px;
+    background: #465679;
+}
+
+.dayItem_head {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1px;
+    font: 9px Arial, Sans-serif;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+}
+
+.dayItem_head tr {
+    border: 0px;
+}
+
+.dayItem_head tr td {
+    border: 0px;
+}
+
+.dayItem_head .TM {
+    height: 3px;
+    background: #465679;
+}
+
+.dayItem_head .ML {
+    height: 3px;
+    width: 3px;
+    background: #465679;
+}
+
+.dayItem_head .MM {
+    height: 8px;
+    background: #465679;
+    text-align: left;
+    font-size: 7px;
+    word-break: break-all;
+}
+
+.dayItem_head .BM {
+    height: 3px;
+    background: #465679;
+}
+
+/****************����ͼItems(β)**********************/
+
+.dayItem_tail {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1px;
+    font: 9px Arial, Sans-serif;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+}
+
+.dayItem_tail tr {
+    border: 0px;
+}
+
+.dayItem_tail tr td {
+    border: 0px;
+}
+
+.dayItem_tail .TM {
+    height: 3px;
+    background: #465679;
+}
+
+.dayItem_tail .MM {
+    height: 8px;
+    background: #465679;
+}
+
+.dayItem_tail .MR {
+    height: 8px;
+    background: #465679;
+}
+
+.dayItem_tail .BM {
+    height: 3px;
+    background: #465679;
+}
+
+.dayItem_body {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1px;
+    font: 9px Arial, Sans-serif;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+}
+
+.dayItem_body tr {
+    border: 0px;
+}
+
+.dayItem_body tr td {
+    border: 0px;
+}
+
+.dayItem_body .TM {
+    height: 3px;
+    background: #465679;
+}
+
+.dayItem_body .MM {
+    height: 8px;
+    background: #465679;
+}
+
+.dayItem_body .BM {
+    height: 3px;
+    background: #465679;
+}
+
+.button {
+    width: 82px;
+    background: url("../images/button.gif");
+    height: 28px;
+    line-height: 28px;
+    border: none;
+    margin: 2px 10px 2px 0;
+    cursor: pointer;
+    color: #2791CA;
+}

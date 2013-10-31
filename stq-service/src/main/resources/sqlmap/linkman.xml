@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="linkman">
+    <typeAlias alias="linkman" type="com.cary.stq.to.Linkman"></typeAlias>
+
+    <resultMap id="LinkmanResult" class="linkman">
+        <result column="LINKMAN_ID" jdbcType="INTEGER" property="linkmanId" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <result column="NAME_E" jdbcType="VARCHAR" property="nameE" />
+        <result column="POSITION" jdbcType="VARCHAR" property="position" />
+        <result column="POSITION_E" jdbcType="VARCHAR" property="positionE" />
+        <result column="TELEPHONE" jdbcType="VARCHAR" property="telephone" />
+        <result column="FAX" jdbcType="VARCHAR" property="fax" />
+        <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+        <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+        <result column="REF_COM_ID" jdbcType="CHAR" property="refComId" />
+    </resultMap>
+
+    <select id="search" resultMap="LinkmanResult" parameterClass="java.util.HashMap">
+        SELECT LINKMAN_ID, NAME, NAME_E, POSITION, POSITION_E, TELEPHONE, FAX, MOBILE, EMAIL, REF_COM_ID
+        FROM LINKMAN
+        WHERE 1 = 1
+        <isNotEmpty property="linkmanIds" prepend=" AND ">
+            LINKMAN_ID IN ( $linkmanIds$  )
+        </isNotEmpty>
+        <isNotEmpty property="refComId" prepend=" AND ">
+            REF_COM_ID = #refComId#
+        </isNotEmpty>
+    </select>
+
+    <select id="getLinkmanByPK" resultMap="LinkmanResult" parameterClass="java.util.HashMap">
+        SELECT LINKMAN_ID, NAME, NAME_E, POSITION, POSITION_E, TELEPHONE, FAX, MOBILE, EMAIL , REF_COM_ID
+        FROM LINKMAN
+        WHERE 1 = 1
+        <isNotEmpty property="linkmanId" prepend=" AND ">
+            LINKMAN_ID = #linkmanId#
+        </isNotEmpty>
+    </select>
+
+    <delete id="deleteByPK" parameterClass="linkman">
+        DELETE FROM LINKMAN
+        WHERE LINKMAN_ID = #linkmanId:INTEGER#
+    </delete>
+
+    <insert id="insert" parameterClass="linkman">
+        INSERT INTO LINKMAN (LINKMAN_ID, NAME, NAME_E, POSITION, POSITION_E, TELEPHONE, FAX, MOBILE, EMAIL, REF_COM_ID)
+        values (#linkmanId:INTEGER#, #name:VARCHAR#, #nameE:VARCHAR#, #position:VARCHAR#,
+          #positionE:VARCHAR#, #telephone:VARCHAR#, #fax:VARCHAR#, #mobile:VARCHAR#, #email:VARCHAR#, #refComId:CHAR#)
+    </insert>
+
+    <update id="updateByPK" parameterClass="linkman">
+        UPDATE LINKMAN
+        SET NAME = #name:VARCHAR#,
+          NAME_E = #nameE:VARCHAR#,
+          POSITION = #position:VARCHAR#,
+          POSITION_E = #positionE:VARCHAR#,
+          TELEPHONE = #telephone:VARCHAR#,
+          FAX = #fax:VARCHAR#,
+          MOBILE = #mobile:VARCHAR#,
+          EMAIL = #email:VARCHAR#,
+          REF_COM_ID = #refComId:CHAR#
+        WHERE LINKMAN_ID = #linkmanId:INTEGER#
+    </update>
+
+</sqlMap>

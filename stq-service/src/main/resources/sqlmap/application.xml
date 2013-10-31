@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="application">
+    <typeAlias alias="application" type="com.cary.stq.to.Application"></typeAlias>
+
+    <resultMap id="ApplicationResult" class="application">
+        <result column="ID" jdbcType="INTEGER" property="id" />
+        <result column="APPLY_ID" jdbcType="CHAR" property="applyId" />
+        <result column="CHARGE_ID" jdbcType="VARCHAR" property="chargeId" />
+        <result column="APPLY_COMPANY_ID" jdbcType="INTEGER" property="applyCompanyId" />
+        <result column="APPLY_COMPANY_NAME" jdbcType="VARCHAR" property="applyCompanyName" />
+        <result column="LINKMAN_ID" jdbcType="VARCHAR" property="linkmanId" />
+        <result column="LINKMAN_NAME" jdbcType="VARCHAR" property="linkmanName" />
+        <result column="SAMPLE_ID" jdbcType="INTEGER" property="sampleId" />
+        <result column="SAMPLE_NAME" jdbcType="VARCHAR" property="sampleName" />
+        <result column="SAMPLE_RECEIVED" jdbcType="CHAR" property="sampleReceived" />
+        <result column="SAMPLE_RECEIVED_DT" jdbcType="TIMESTAMP" property="sampleReceivedDt" />
+        <result column="TEST_ITEMS" jdbcType="VARCHAR" property="testItems" />
+        <result column="OTHER_TEST_ITEMS" jdbcType="VARCHAR" property="otherTestItems" />
+        <result column="SERVICE_TYPE" jdbcType="VARCHAR" property="serviceType" />
+        <result column="REPORD_ID" jdbcType="VARCHAR" property="repordId" />
+        <result column="REPORT_LANGUAGE" jdbcType="CHAR" property="reportLanguage" />
+        <result column="REPORT_TYPE" jdbcType="CHAR" property="reportType" />
+        <result column="REPORT_COMPANY_NAME" jdbcType="VARCHAR" property="reportCompanyName" />
+        <result column="REPORT_COMPANY_ADDRESS" jdbcType="VARCHAR" property="reportCompanyAddress" />
+        <result column="REPORT_DT" jdbcType="TIMESTAMP" property="reportDt" />
+        <result column="INVOICE_COMMANY" jdbcType="VARCHAR" property="invoiceCommany" />
+        <result column="INVOICE_COMMANY_REMARKS" jdbcType="VARCHAR" property="invoiceCommanyRemarks" />
+        <result column="REPORT_INVOICE_TO" jdbcType="VARCHAR" property="reportInvoiceTo" />
+        <result column="REPORT_INVOICE_TO_REMARKS" jdbcType="VARCHAR" property="reportInvoiceToRemarks" />
+        <result column="CAN_SUBPACKAGE" jdbcType="CHAR" property="canSubpackage" />
+        <result column="CUSTOMER_SIGN_DATE" jdbcType="DATE" property="customerSignDate" />
+        <result column="STO_SIGN_DATE" jdbcType="DATE" property="stoSignDate" />
+        <result column="STATUS" jdbcType="CHAR" property="status" />
+        <result column="SELLER_ID" jdbcType="VARCHAR" property="sellerId" />
+        <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
+        <result column="CREATE_DT" jdbcType="TIMESTAMP" property="createDt" />
+        <result column="MODIFIED_BY" jdbcType="VARCHAR" property="modifiedBy" />
+        <result column="MODIFIED_DT" jdbcType="TIMESTAMP" property="modifiedDt" />
+    </resultMap>
+
+    <select id="select" resultMap="ApplicationResult" parameterClass="application">
+        SELECT ID, APPLY_ID, CHARGE_ID, APPLY_COMPANY_ID, APPLY_COMPANY_NAME, LINKMAN_ID, LINKMAN_NAME,
+            SAMPLE_ID, SAMPLE_NAME,SAMPLE_RECEIVED, SAMPLE_RECEIVED_DT, TEST_ITEMS, OTHER_TEST_ITEMS, SERVICE_TYPE, REPORD_ID,
+            REPORT_LANGUAGE, REPORT_TYPE, REPORT_COMPANY_NAME, REPORT_COMPANY_ADDRESS, REPORT_DT,
+            INVOICE_COMMANY, INVOICE_COMMANY_REMARKS, REPORT_INVOICE_TO, REPORT_INVOICE_TO_REMARKS,
+            CAN_SUBPACKAGE, CUSTOMER_SIGN_DATE, STO_SIGN_DATE, STATUS, SELLER_ID, CREATE_BY, CREATE_DT,
+            MODIFIED_BY, MODIFIED_DT
+        FROM APPLICATION
+        <dynamic prepend=" WHERE ">
+            <isNotEmpty prepend="or" property="id">
+                ID = #id:INTEGER#
+            </isNotEmpty>
+            <isNotEmpty prepend="or" property="applyId">
+                APPLY_ID LIKE CONCAT('%',#applyId:CHAR#,'%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="chargeId">
+                CHARGE_ID = #chargeId:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="repordId">
+                REPORD_ID = #repordId:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="reportDt">
+                CREATE_DT = #reportDt:TIMESTAMP#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceType">
+                SERVICE_TYPE = #serviceType:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="reportInvoiceToRemarks">
+                REPORT_INVOICE_TO_REMARKS = #reportInvoiceToRemarks:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="canSubpackage">
+                CAN_SUBPACKAGE = #canSubpackage:CHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="customerSignDate">
+                CUSTOMER_SIGN_DATE = #customerSignDate:DATE#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="stoSignDate">
+                STO_SIGN_DATE = #stoSignDate:DATE#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="createDt">
+                CREATE_DT = #createDt:TIMESTAMP#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="modifiedDt">
+                MODIFIED_DT = #modifiedDt:TIMESTAMP#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sellerId">
+                SELLER_ID = #sellerId:VARCHAR#
+            </isNotEmpty>
+        </dynamic>
+        order by CREATE_DT DESC
+    </select>
+
+    <select id="getAppSingle" resultMap="ApplicationResult" parameterClass="java.util.HashMap">
+        SELECT ID, APPLY_ID, CHARGE_ID, APPLY_COMPANY_ID, APPLY_COMPANY_NAME, LINKMAN_ID, LINKMAN_NAME,
+            SAMPLE_ID, SAMPLE_NAME, SAMPLE_RECEIVED, SAMPLE_RECEIVED_DT, TEST_ITEMS, OTHER_TEST_ITEMS, SERVICE_TYPE, REPORD_ID,
+            REPORT_LANGUAGE, REPORT_TYPE, REPORT_COMPANY_NAME, REPORT_COMPANY_ADDRESS, REPORT_DT,
+            INVOICE_COMMANY, INVOICE_COMMANY_REMARKS, REPORT_INVOICE_TO, REPORT_INVOICE_TO_REMARKS,
+            CAN_SUBPACKAGE, CUSTOMER_SIGN_DATE, STO_SIGN_DATE, STATUS, SELLER_ID, CREATE_BY, CREATE_DT,
+            MODIFIED_BY, MODIFIED_DT
+        FROM APPLICATION
+        <dynamic prepend=" WHERE ">
+            <isNotEmpty prepend="or" property="id">
+                ID = #id:INTEGER#
+            </isNotEmpty>
+            <isNotEmpty prepend="or" property="applyId">
+                APPLY_ID = #applyId:CHAR#
+            </isNotEmpty>
+        </dynamic>
+    </select>
+
+    <delete id="deleteByPK" parameterClass="application">
+    delete from application
+    where ID = #id:INTEGER#
+  </delete>
+
+    <insert id="insert" parameterClass="application">
+    insert into application (ID, APPLY_ID, CHARGE_ID, APPLY_COMPANY_ID, APPLY_COMPANY_NAME,
+      LINKMAN_ID, LINKMAN_NAME, SAMPLE_ID, SAMPLE_NAME, SAMPLE_RECEIVED, SAMPLE_RECEIVED_DT, TEST_ITEMS, OTHER_TEST_ITEMS, SERVICE_TYPE,
+      REPORD_ID, REPORT_LANGUAGE, REPORT_TYPE, REPORT_COMPANY_NAME, REPORT_COMPANY_ADDRESS,
+      REPORT_DT, INVOICE_COMMANY, INVOICE_COMMANY_REMARKS, REPORT_INVOICE_TO,
+      REPORT_INVOICE_TO_REMARKS, CAN_SUBPACKAGE, CUSTOMER_SIGN_DATE, STO_SIGN_DATE, STATUS,
+      SELLER_ID, CREATE_BY, CREATE_DT, MODIFIED_BY, MODIFIED_DT)
+    values (#id:INTEGER#, #applyId:CHAR#, #chargeId:VARCHAR#, #applyCompanyId:INTEGER#,
+      #applyCompanyName:VARCHAR#, #linkmanId:VARCHAR#, #linkmanName:VARCHAR#, #sampleId:INTEGER#,
+      #sampleName:VARCHAR#, #sampleReceived:CHAR#, #sampleReceivedDt:TIMESTAMP#, #testItems:VARCHAR#, #otherTestItems:VARCHAR#, #serviceType:VARCHAR#,
+      #repordId:VARCHAR#, #reportLanguage:CHAR#, #reportType:CHAR#, #reportCompanyName:VARCHAR#,
+      #reportCompanyAddress:VARCHAR#, #reportDt:TIMESTAMP#, #invoiceCommany:VARCHAR#,
+      #invoiceCommanyRemarks:VARCHAR#, #reportInvoiceTo:VARCHAR#, #reportInvoiceToRemarks:VARCHAR#,
+      #canSubpackage:CHAR#, #customerSignDate:DATE#, #stoSignDate:DATE#, #status:CHAR#,
+      #sellerId:VARCHAR#, #createBy:VARCHAR#, #createDt:TIMESTAMP#, #modifiedBy:VARCHAR#,
+      #modifiedDt:TIMESTAMP#)
+  </insert>
+
+    <update id="updateSingle" parameterClass="application">
+    update application
+    set APPLY_ID = #applyId:CHAR#,
+        CHARGE_ID = #chargeId:VARCHAR#,
+        APPLY_COMPANY_ID = #applyCompanyId:INTEGER#,
+        APPLY_COMPANY_NAME = #applyCompanyName:VARCHAR#,
+        LINKMAN_ID = #linkmanId:VARCHAR#,
+        LINKMAN_NAME = #linkmanName:VARCHAR#,
+        SAMPLE_ID = #sampleId:INTEGER#,
+        SAMPLE_NAME = #sampleName:VARCHAR#,
+        SAMPLE_RECEIVED = #sampleReceived:CHAR#,
+        SAMPLE_RECEIVED_DT = #sampleReceivedDt:TIMESTAMP#,
+        TEST_ITEMS = #testItems:VARCHAR#,
+        OTHER_TEST_ITEMS = #otherTestItems:VARCHAR#,
+        SERVICE_TYPE = #serviceType:VARCHAR#,
+        REPORD_ID = #repordId:VARCHAR#,
+        REPORT_LANGUAGE = #reportLanguage:CHAR#,
+        REPORT_TYPE = #reportType:CHAR#,
+        REPORT_COMPANY_NAME = #reportCompanyName:VARCHAR#,
+        REPORT_COMPANY_ADDRESS = #reportCompanyAddress:VARCHAR#,
+        REPORT_DT = #reportDt:TIMESTAMP#,
+        INVOICE_COMMANY = #invoiceCommany:VARCHAR#,
+        INVOICE_COMMANY_REMARKS = #invoiceCommanyRemarks:VARCHAR#,
+        REPORT_INVOICE_TO = #reportInvoiceTo:VARCHAR#,
+        REPORT_INVOICE_TO_REMARKS = #reportInvoiceToRemarks:VARCHAR#,
+        CAN_SUBPACKAGE = #canSubpackage:CHAR#,
+        CUSTOMER_SIGN_DATE = #customerSignDate:DATE#,
+        STO_SIGN_DATE = #stoSignDate:DATE#,
+        STATUS = #status:CHAR#,
+        SELLER_ID = #sellerId:VARCHAR#,
+        MODIFIED_BY = #modifiedBy:VARCHAR#,
+        MODIFIED_DT = #modifiedDt:TIMESTAMP#
+    <dynamic prepend=" WHERE ">
+        <isNotEmpty prepend="or" property="id">
+            ID = #id:INTEGER#
+        </isNotEmpty>
+        <isNotEmpty prepend="or" property="applyId">
+            APPLY_ID = #applyId:CHAR#
+        </isNotEmpty>
+    </dynamic>
+  </update>
+
+</sqlMap>

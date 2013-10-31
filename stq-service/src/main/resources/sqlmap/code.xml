@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="code">
+    <resultMap id="CodeResult" class="com.cary.stq.to.Code">
+        <result column="CODE_ID" property="codeId" jdbcType="INTEGER"/>
+        <result column="CATEGORY" property="dicCode" jdbcType="VARCHAR"/>
+        <result column="ID" property="itemCode" jdbcType="VARCHAR"/>
+        <result column="DESCRIPTION" property="itemValue" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="search" resultMap="CodeResult" parameterClass="com.cary.stq.to.Code">
+        select CODE_ID, CATEGORY, ID, DESCRIPTION
+        from code
+        <dynamic prepend="where">
+            <isNotEmpty prepend="and" property="codeId">
+                CODE_ID = #codeId:INTEGER#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="dicCode">
+                CATEGORY = #dicCode:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="itemCode">
+                ID = #itemCode:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="itemValue">
+                DESCRIPTION = #itemValue:VARCHAR#
+            </isNotEmpty>
+        </dynamic>
+    </select>
+
+    <delete id="deleteByPK" parameterClass="com.cary.stq.to.Code">
+    delete from code
+    where CODE_ID = #codeId:INTEGER#
+  </delete>
+
+    <insert id="insert" parameterClass="com.cary.stq.to.Code">
+    insert into code (CODE_ID, CATEGORY, ID, DESCRIPTION)
+    values (#codeId:INTEGER#, #dicCode:VARCHAR#, #itemCode:VARCHAR#, #itemValue:VARCHAR#)
+  </insert>
+
+    <update id="updateByPK" parameterClass="com.cary.stq.to.Code">
+    update code
+    set CATEGORY = #dicCode:VARCHAR#,
+      ID = #itemCode:VARCHAR#,
+      DESCRIPTION = #itemValue:VARCHAR#
+    where CODE_ID = #codeId:INTEGER#
+  </update>
+
+    <update id="updateByPKSelective" parameterClass="com.cary.stq.to.Code">
+        update code
+        <dynamic prepend="set">
+            <isNotEmpty prepend="," property="dicCode">
+                CATEGORY = #dicCode:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="itemCode">
+                ID = #itemCode:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="itemValue">
+                DESCRIPTION = #itemValue:VARCHAR#
+            </isNotEmpty>
+        </dynamic>
+        where CODE_ID = #codeId:INTEGER#
+    </update>
+
+</sqlMap>

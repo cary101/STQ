@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="workday">
+    <typeAlias alias="workDay" type="com.cary.stq.to.WorkDayTo"></typeAlias>
+
+    <resultMap id="workDayResult" class="workDay">
+        <result column="NATURALDAY" property="naturalDay" jdbcType="VARCHAR"/>
+        <result column="ISWORKDAY" property="isWorkDay" jdbcType="CHAR"/>
+    </resultMap>
+
+    <select id="search" resultMap="workDayResult" parameterClass="java.util.HashMap">
+        select NATURALDAY, ISWORKDAY
+        from WORKDAY
+        WHERE SUBSTR(NATURALDAY, 1 ,7) =  #workMonth:VARCHAR#
+    </select>
+
+    <insert id="insert" parameterClass="workday">
+        INSERT INTO  WORKDAY(NATURALDAY, ISWORKDAY)
+        VALUES (#naturalDay:VARCHAR#, #isWorkDay:CHAR#)
+    </insert>
+
+    <delete id="deleteByPK" parameterClass="java.util.HashMap">
+        DELETE FROM WORKDAY
+        where SUBSTR(NATURALDAY, 1, 7) = #workMonth:VARCHAR#
+  </delete>
+
+</sqlMap>

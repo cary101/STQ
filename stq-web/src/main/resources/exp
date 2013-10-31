@@ -1,0 +1,87 @@
+mvn archetype:create -DgroupId=com.cx.webapp -DartifactId=myweb -DarchetypeArtifactId=maven-archetype-webapp
+
+
+-*** Jquery ***-
+1.$('input[name="testradio"]:checked').val();
+$(":enabled")             选择所有的可操作的表单元素 
+
+$(":disabled")            选择所有的不可操作的表单元素 
+
+$(":checked")            选择所有的被checked的表单元素 
+
+$("select option:selected") 选择所有的select 的子元素中被selected的元素
+
+
+
+-*** Jsp ***-
+1.页面乱码： <%@page language="java" import="java.util.*" pageEncoding="utf-8" %>
+
+
+-*** Ibatis ***-
+	<isNotEmpty property="unitCode" prepend=" AND ">
+		UNIT_CODE in
+		<iterate open="(" close=")" conjunction="," property="unitCodeList">
+			#unitCodeList[]# 
+		</iterate>
+	</isNotEmpty>
+		
+
+-*** Spring ***-
+1. Spring bean scope default singleton
+
+-*** ehcache ***-
+       maxElementsInMemory：缓存最大个数。
+       eternal:对象是否永久有效，一但设置了，timeout将不起作用。
+       timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。
+       timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。
+       overflowToDisk：当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。
+       diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。
+       maxElementsOnDisk：硬盘最大缓存个数。
+       diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.
+       diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。
+       memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。
+       clearOnFlush：内存数量最大时是否清除。
+
+
+-*** MySql ***-
+1.中文乱码：修改my.ini  default-character-set=utf8  character-set-server=utf8
+2.时区设置：default-time_zone = '+8:00'  or   mysql > SET time_zone = '+8:00';  #北京时间
+3.分页条件：select * from tb limit 0, offset 10
+
+-*** Jasper ***-
+IReport 组件面板：ctrl+shift+8
+        属性面板：ctrl+shift+7
+
+显示中文设置：
+        宋体（Simsun）
+        Pdf Font name is now deprecated: "STSong-Light".
+        Pdf Embedded: checked.
+        Pdf Encoding: "UniGB-UCS2-H (Chinese Simplified)"
+
+
+ 1.spring+jasperReport生成PDF格式的报表时报
+     java.lang.NoSuchMethodError: com.lowagie.text.pdf.PdfWriter.setRgbTransparencyBlending(Z)V异常
+     原因：iText.jar文件过旧，将之改为2.1版就没事了。
+
+ 2.java.lang.NoClassDefFoundError: org/codehaus/groovy/control/CompilationFailedException异常
+     原因：没有导入 groovy-all.jar 包，导入 groovy-all.jar 包就可以了。
+
+ 3. Excle 应用：
+ java.lang.NoClassDefFoundError: org/apache/poi/hssf/usermodel/HSSFCellStyle
+ 出现上述错误提示加入 poi-3.2-FINAL-20081019.jar
+
+ 4.net.sf.jasperreports.engine.JRRuntimeException: Could not load the following font :
+     pdfFontName   : STSong-Light
+     pdfEncoding   : UniGB-UCS2-H
+     isPdfEmbedded : false
+ 出现上述错误提示加入 iTextAsian.jar
+
+ 5.java.lang.NoClassDefFoundError: org/apache/commons/digester/Digester
+ 出现上述错误提示加入
+ commons-digester-1.7.jar   iReport/lib  功能简述：解析 xml 文件；
+
+ 6.java.lang.NoClassDefFoundError: org/apache/commons/collections/ArrayStack
+ 出现上述错误提示加入 commons-beanutils-1.7.jar    iReport/lib
+
+ 7.java.lang.NoClassDefFoundError: org/apache/commons/collections/ReferenceMap
+ 出现上述错误提示加入 commons-collections-2.1.jar   iReport/lib

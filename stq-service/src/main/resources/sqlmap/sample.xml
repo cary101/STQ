@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="sample">
+    <typeAlias alias="sample" type="com.cary.stq.to.Sample"></typeAlias>
+
+    <resultMap id="SampleResult" class="sample">
+        <result column="SAMPLE_ID" jdbcType="INTEGER" property="sampleId"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="QUANTITY" jdbcType="INTEGER" property="quantity"/>
+        <result column="EXPRESS_NO" jdbcType="VARCHAR" property="expressNo"/>
+        <result column="MODEL_NO" jdbcType="VARCHAR" property="modelNo"/>
+        <result column="MAY_COVER_MODEL" jdbcType="VARCHAR" property="mayCoverModel"/>
+        <result column="MAIN_METERIAL" jdbcType="VARCHAR" property="mainMeterial"/>
+        <result column="LOT_NO" jdbcType="VARCHAR" property="lotNo"/>
+        <result column="REVEICED_DT" jdbcType="TIMESTAMP" property="reveicedDt"/>
+        <result column="BUYER" jdbcType="VARCHAR" property="buyer"/>
+        <result column="SUPPLIER" jdbcType="VARCHAR" property="supplier"/>
+        <result column="ISLIQUID" jdbcType="CHAR" property="isLiquid"/>
+        <result column="LIQUID_METHOD" jdbcType="CHAR" property="liquidMethod"/>
+        <result column="PHOTO_REQURIMENT" jdbcType="VARCHAR" property="photoRequriment"/>
+        <result column="SPECIFIC_REQURIMENT" jdbcType="VARCHAR" property="specificRequriment"/>
+        <result column="CONCENTRATION_GT1" jdbcType="CHAR" property="concentrationGt1"/>
+        <result column="DANGEROUS_CODE" jdbcType="VARCHAR" property="dangerousCode"/>
+        <result column="DANGEROUS_REMARKS" jdbcType="VARCHAR" property="dangerousRemarks"/>
+    </resultMap>
+
+    <select id="search" resultMap="SampleResult" parameterClass="java.util.HashMap">
+        SELECT SAMPLE_ID, NAME, QUANTITY, EXPRESS_NO, MODEL_NO, MAY_COVER_MODEL, MAIN_METERIAL, LOT_NO,
+            REVEICED_DT, BUYER, SUPPLIER, ISLIQUID, LIQUID_METHOD, PHOTO_REQURIMENT, SPECIFIC_REQURIMENT,
+            CONCENTRATION_GT1, DANGEROUS_CODE, DANGEROUS_REMARKS
+        FROM SAMPLE
+        WHERE SAMPLE_ID = #sampleId#
+    </select>
+
+    <select id="getSampleByPK" resultMap="SampleResult" parameterClass="java.util.HashMap">
+        SELECT SAMPLE_ID, NAME, QUANTITY, EXPRESS_NO, MODEL_NO, MAY_COVER_MODEL, MAIN_METERIAL, LOT_NO,
+            REVEICED_DT, BUYER, SUPPLIER, ISLIQUID, LIQUID_METHOD, PHOTO_REQURIMENT, SPECIFIC_REQURIMENT,
+            CONCENTRATION_GT1, DANGEROUS_CODE, DANGEROUS_REMARKS
+        FROM SAMPLE
+        WHERE SAMPLE_ID = #sampleId#
+    </select>
+
+    <insert id="insert" parameterClass="sample">
+        insert into sample ( NAME, QUANTITY, EXPRESS_NO, MODEL_NO, MAY_COVER_MODEL,
+        MAIN_METERIAL, LOT_NO, REVEICED_DT, BUYER, SUPPLIER, ISLIQUID, LIQUID_METHOD, PHOTO_REQURIMENT,
+        SPECIFIC_REQURIMENT, CONCENTRATION_GT1, DANGEROUS_CODE, DANGEROUS_REMARKS)
+        values (#name:VARCHAR#, #quantity:INTEGER#, #expressNo:VARCHAR#,
+        #modelNo:VARCHAR#, #mayCoverModel:VARCHAR#, #mainMeterial:VARCHAR#, #lotNo:VARCHAR#,
+        #reveicedDt:TIMESTAMP#, #buyer:VARCHAR#, #supplier:VARCHAR#, #isLiquid:CHAR#, #liquidMethod:CHAR#,
+        #photoRequriment:VARCHAR#, #specificRequriment:VARCHAR#, #concentrationGt1:CHAR#,
+        #dangerousCode:VARCHAR#, #dangerousRemarks:VARCHAR#)
+        <selectKey resultClass="int" keyProperty="sampleId">
+            SELECT last_insert_id() as sampleId
+        </selectKey>
+    </insert>
+
+    <update id="updateByPK" parameterClass="sample">
+        update sample
+        set NAME = #name:VARCHAR#,
+          QUANTITY = #quantity:INTEGER#,
+          EXPRESS_NO = #expressNo:VARCHAR#,
+          MODEL_NO = #modelNo:VARCHAR#,
+          MAY_COVER_MODEL = #mayCoverModel:VARCHAR#,
+          MAIN_METERIAL = #mainMeterial:VARCHAR#,
+          LOT_NO = #lotNo:VARCHAR#,
+          REVEICED_DT = #reveicedDt:TIMESTAMP#,
+          BUYER = #buyer:VARCHAR#,
+          SUPPLIER = #supplier:VARCHAR#,
+          ISLIQUID= #isLiquid:CHAR#,
+          LIQUID_METHOD = #liquidMethod:CHAR#,
+          PHOTO_REQURIMENT = #photoRequriment:VARCHAR#,
+          SPECIFIC_REQURIMENT = #specificRequriment:VARCHAR#,
+          CONCENTRATION_GT1 = #concentrationGt1:CHAR#,
+          DANGEROUS_CODE = #dangerousCode:VARCHAR#,
+          DANGEROUS_REMARKS = #dangerousRemarks:VARCHAR#
+        where SAMPLE_ID = #sampleId#
+    </update>
+
+</sqlMap>

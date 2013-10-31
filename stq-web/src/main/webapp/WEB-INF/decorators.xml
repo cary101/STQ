@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/decorators">
+    <excludes>
+        <!--<pattern>/easyui/*</pattern>-->
+        <!--<pattern>/css/*</pattern>-->
+        <!--<pattern>/images/*</pattern>-->
+        <!--<pattern>/js/*</pattern>-->
+        <!--<pattern>/views/*</pattern>-->
+        <!--<pattern>/login/login</pattern>-->
+        <!--<pattern>/application/*</pattern>-->
+        <!--<pattern>/application/popup*</pattern>-->
+        <!--<pattern>/createApp*</pattern>-->
+        <!--<pattern>*/login.jsp</pattern>-->
+        <!--<pattern>/login/login.jsp</pattern>-->
+    </excludes>
+
+    <decorator name="main" page="main.jsp">
+        <pattern>/*index*</pattern>
+        <pattern>/*login*</pattern>
+    </decorator>
+    <decorator name="menu" page="menu.jsp">
+        <pattern>/*index*</pattern>
+        <pattern>/*welcome.jsp</pattern>
+        <pattern>/*login*</pattern>
+    </decorator>
+</decorators>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="testitems">
+  <resultMap class="com.cary.stq.to.Testitems" id="testitemsResult">
+    <result column="TID" jdbcType="INTEGER" property="tid" />
+    <result column="ITEM_ID" jdbcType="VARCHAR" property="itemId" />
+    <result column="ITEM_DESC" jdbcType="VARCHAR" property="itemDesc" />
+    <result column="SUB_ITEM_ID1" jdbcType="VARCHAR" property="subItemId1" />
+    <result column="SUB_ITEM_DESC1" jdbcType="VARCHAR" property="subItemDesc1" />
+    <result column="SUB_ITEM_ID2" jdbcType="VARCHAR" property="subItemId2" />
+    <result column="SUB_ITEM_DESC2" jdbcType="VARCHAR" property="subItemDesc2" />
+    <result column="SUB_ITEM_ID3" jdbcType="VARCHAR" property="subItemId3" />
+    <result column="SUB_ITEM_DESC3" jdbcType="VARCHAR" property="subItemDesc3" />
+    <result column="STANDARD" jdbcType="VARCHAR" property="standard" />
+  </resultMap>
+
+    <resultMap class="com.cary.stq.to.Testitems" id="itemsResult">
+        <result column="ITEM_ID" jdbcType="VARCHAR" property="itemId" />
+        <result column="ITEM_DESC" jdbcType="VARCHAR" property="itemDesc" />
+    </resultMap>
+
+  <select id="selectByPK" parameterClass="com.cary.stq.to.Testitems" resultMap="testitemsResult">
+    select TID, ITEM_ID, ITEM_DESC, SUB_ITEM_ID1, SUB_ITEM_DESC1, SUB_ITEM_ID2, SUB_ITEM_DESC2,
+      SUB_ITEM_ID3, SUB_ITEM_DESC3, STANDARD
+    from testitems
+    where TID = #tid:INTEGER#
+  </select>
+
+   <select id="getItems"  resultMap="itemsResult">
+     SELECT DISTINCT ITEM_ID, ITEM_DESC
+     FROM TESTITEMS
+   </select>
+
+   <select id="select" parameterClass="com.cary.stq.to.Testitems" resultMap="testitemsResult">
+    select TID, ITEM_ID, ITEM_DESC, SUB_ITEM_ID1, SUB_ITEM_DESC1, SUB_ITEM_ID2, SUB_ITEM_DESC2,
+      SUB_ITEM_ID3, SUB_ITEM_DESC3, STANDARD
+    from testitems
+   <dynamic prepend=" WHERE ">
+       <isNotEmpty prepend="AND" property="itemId">
+           ITEM_ID = #itemId:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="itemDesc">
+           ITEM_DESC = #itemDesc:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="subItemId1">
+           SUB_ITEM_ID1 = #subItemId1:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="subItemDesc1">
+           SUB_ITEM_DESC1 = #subItemDesc1:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="subItemId2">
+           SUB_ITEM_ID2 = #subItemId2:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="subItemDesc2">
+           SUB_ITEM_DESC2 = #subItemDesc2:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="subItemId3">
+           SUB_ITEM_ID3 = #subItemId3:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="subItemDesc3">
+           SUB_ITEM_DESC3 = #subItemDesc3:VARCHAR#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="standard">
+           STANDARD = #standard:VARCHAR#
+       </isNotEmpty>
+   </dynamic>
+  </select>
+
+  <delete id="deleteByPK" parameterClass="com.cary.stq.to.Testitems">
+    delete from testitems
+    where TID = #tid:INTEGER#
+  </delete>
+
+  <insert id="insert" parameterClass="com.cary.stq.to.Testitems">
+    insert into testitems (TID, ITEM_ID, ITEM_DESC, SUB_ITEM_ID1, SUB_ITEM_DESC1, SUB_ITEM_ID2,
+      SUB_ITEM_DESC2, SUB_ITEM_ID3, SUB_ITEM_DESC3, STANDARD)
+    values (#tid:INTEGER#, #itemId:VARCHAR#, #itemDesc:VARCHAR#, #subItemId1:VARCHAR#,
+      #subItemDesc1:VARCHAR#, #subItemId2:VARCHAR#, #subItemDesc2:VARCHAR#, #subItemId3:VARCHAR#,
+      #subItemDesc3:VARCHAR#, #standard:VARCHAR#)
+  </insert>
+
+  <update id="updateByPK" parameterClass="com.cary.stq.to.Testitems">
+    update testitems
+    set ITEM_ID = #itemId:VARCHAR#,
+      ITEM_DESC = #itemDesc:VARCHAR#,
+      SUB_ITEM_ID1 = #subItemId1:VARCHAR#,
+      SUB_ITEM_DESC1 = #subItemDesc1:VARCHAR#,
+      SUB_ITEM_ID2 = #subItemId2:VARCHAR#,
+      SUB_ITEM_DESC2 = #subItemDesc2:VARCHAR#,
+      SUB_ITEM_ID3 = #subItemId3:VARCHAR#,
+      SUB_ITEM_DESC3 = #subItemDesc3:VARCHAR#,
+      STANDARD = #standard:VARCHAR#
+    where TID = #tid:INTEGER#
+  </update>
+
+  <update id="updateByPKSelective" parameterClass="com.cary.stq.to.Testitems">
+    update testitems
+    <dynamic prepend="set">
+      <isNotEmpty prepend="," property="itemId">
+        ITEM_ID = #itemId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="itemDesc">
+        ITEM_DESC = #itemDesc:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="subItemId1">
+        SUB_ITEM_ID1 = #subItemId1:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="subItemDesc1">
+        SUB_ITEM_DESC1 = #subItemDesc1:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="subItemId2">
+        SUB_ITEM_ID2 = #subItemId2:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="subItemDesc2">
+        SUB_ITEM_DESC2 = #subItemDesc2:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="subItemId3">
+        SUB_ITEM_ID3 = #subItemId3:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="subItemDesc3">
+        SUB_ITEM_DESC3 = #subItemDesc3:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="standard">
+        STANDARD = #standard:VARCHAR#
+      </isNotEmpty>
+    </dynamic>
+    where TID = #tid:INTEGER#
+  </update>
+</sqlMap>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="user">
+    <typeAlias alias="User" type="com.cary.stq.to.User" />
+
+    <resultMap id="UserResult" class="User">
+        <result column="USER_ID" property="userId" jdbcType="INTEGER"/>
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+        <result column="REAL_NAME" property="realName" jdbcType="VARCHAR"/>
+        <result column="MOBILE" property="mobile" jdbcType="VARCHAR"/>
+        <result column="EMAIL" property="email" jdbcType="VARCHAR"/>
+        <result column="ENAME" property="ename" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="GENDER" property="gender" jdbcType="CHAR"/>
+        <result column="ROLES" property="roles" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="select" resultMap="UserResult" parameterClass="User">
+        select USER_ID, USER_NAME, REAL_NAME, ENAME, PASSWORD, GENDER, ROLES
+        from user
+        <dynamic prepend="WHERE">
+            <isNotEmpty prepend="AND" property="userId">
+                USER_ID = #userId:INTEGER#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="userName">
+                USER_NAME = #userName:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="realName">
+                REAL_NAME = #realName:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="ename">
+                ENAME = #ename:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="password">
+                PASSWORD = #password:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="gender">
+                GENDER = #gender:CHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="AND" property="roles">
+                ROLES = #roles:VARCHAR#
+            </isNotEmpty>
+        </dynamic>
+    </select>
+
+    <select id="login" resultMap="UserResult" parameterClass="java.util.HashMap">
+        SELECT USER_ID, USER_NAME, REAL_NAME, MOBILE, EMAIL, ENAME, PASSWORD, GENDER, ROLES
+        FROM USER
+        WHERE (USER_NAME = #loginId#
+                OR MOBILE = #loginId#
+                OR EMAIL = #loginId#)
+                AND PASSWORD = #password:VARCHAR#
+    </select>
+
+    <delete id="deleteByPK" parameterClass="User">
+    delete from user
+    where USER_ID = #userId:INTEGER#
+  </delete>
+
+    <insert id="insert" parameterClass="User">
+    insert into user (USER_ID, USER_NAME, REAL_NAME, ENAME, PASSWORD, GENDER, ROLES)
+    values (#userId:INTEGER#, #userName:VARCHAR#, #realName:VARCHAR#, #ename:VARCHAR#,
+      #password:VARCHAR#, #gender:CHAR#, #roles:VARCHAR#)
+  </insert>
+
+    <update id="updateByPK" parameterClass="User">
+    update user
+    set USER_NAME = #userName:VARCHAR#,
+      REAL_NAME = #realName:VARCHAR#,
+      ENAME = #ename:VARCHAR#,
+      PASSWORD = #password:VARCHAR#,
+      GENDER = #gender:CHAR#,
+      ROLES = #roles:VARCHAR#
+    where USER_ID = #userId:INTEGER#
+  </update>
+
+    <update id="updateByPKSelective" parameterClass="User">
+        update user
+        <dynamic prepend="set">
+            <isNotEmpty prepend="," property="userName">
+                USER_NAME = #userName:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="realName">
+                REAL_NAME = #realName:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="ename">
+                ENAME = #ename:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="password">
+                PASSWORD = #password:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="gender">
+                GENDER = #gender:CHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="roles">
+                ROLES = #roles:VARCHAR#
+            </isNotEmpty>
+        </dynamic>
+        where USER_ID = #userId:INTEGER#
+    </update>
+
+</sqlMap>

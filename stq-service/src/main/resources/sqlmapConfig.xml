@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<!-- Cache configuration. -->
+	<settings cacheModelsEnabled="false" enhancementEnabled="true"
+		lazyLoadingEnabled="false" maxRequests="128" maxSessions="100"
+		maxTransactions="100" useStatementNamespaces="true"
+		defaultStatementTimeout="60" />
+
+	<!-- Register SQL-MAP configuration. -->
+	<!-- SQL-MAP configuration for CNAPS-COMMON -->
+	<sqlMap resource="sqlmap/application.xml" />
+	<sqlMap resource="sqlmap/customer.xml" />
+    <sqlMap resource="sqlmap/sample.xml" />
+    <sqlMap resource="sqlmap/linkman.xml" />
+	<sqlMap resource="sqlmap/user.xml" />
+	<sqlMap resource="sqlmap/code.xml" />
+    <sqlMap resource="sqlmap/workday.xml" />
+    <sqlMap resource="sqlmap/testitems.xml" />
+
+	
+</sqlMapConfig>

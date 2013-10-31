@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="customer">
+    <typeAlias alias="customer" type="com.cary.stq.to.Customer"></typeAlias>
+
+    <resultMap id="CustomerResult" class="customer">
+        <result column="COMPANY_ID" jdbcType="INTEGER" property="companyId"/>
+        <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName"/>
+        <result column="SHORT_NAME" jdbcType="VARCHAR" property="shortName"/>
+        <result column="COMPANY_NAME_E" jdbcType="VARCHAR" property="companyNameE"/>
+        <result column="COMPANY_ADDRESS" jdbcType="VARCHAR" property="companyAddress"/>
+        <result column="COMPANY_ADDRESS_E" jdbcType="VARCHAR" property="companyAddressE"/>
+        <result column="POST_CODE" jdbcType="CHAR" property="postCode"/>
+        <result column="LINKMAN_IDS" jdbcType="VARCHAR" property="linkmanIds"/>
+        <result column="WEB_ADDRESS" jdbcType="VARCHAR" property="webAddress"/>
+    </resultMap>
+
+    <select id="search" resultMap="CustomerResult" parameterClass="customer">
+        select COMPANY_ID, COMPANY_NAME, SHORT_NAME, COMPANY_NAME_E, COMPANY_ADDRESS, COMPANY_ADDRESS_E, POST_CODE,
+        LINKMAN_IDS, WEB_ADDRESS
+        from customer
+        <dynamic prepend="where">
+            <isNotEmpty prepend="and" property="companyId">
+                COMPANY_ID = #companyId:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="companyName">
+                COMPANY_NAME LIKE CONCAT('%',#companyName:VARCHAR#,'%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">
+                SHORT_NAME LIKE CONCAT('%',#shortName:VARCHAR#,'%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="companyNameE">
+                COMPANY_NAME_E = #companyNameE:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="companyAddress">
+                COMPANY_ADDRESS = #companyAddress:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="companyAddressE">
+                COMPANY_ADDRESS_E = #companyAddressE:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="postCode">
+                POST_CODE = #postCode:CHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="help">
+                HELP LIKE CONCAT('%',#help:VARCHAR#,'%')
+            </isNotEmpty>
+        </dynamic>
+    </select>
+
+    <select id="getCompanyByPK" resultMap="CustomerResult" parameterClass="java.util.HashMap">
+        SELECT COMPANY_ID, COMPANY_NAME, SHORT_NAME, COMPANY_NAME_E, COMPANY_ADDRESS, COMPANY_ADDRESS_E, POST_CODE,
+          LINKMAN_IDS, WEB_ADDRESS
+        FROM CUSTOMER
+        WHERE COMPANY_ID = #companyId:INTEGER#
+    </select>
+
+    <delete id="deleteByPK" parameterClass="customer">
+        delete from customer
+        where COMPANY_ID = #companyId:INTEGER#
+    </delete>
+
+    <insert id="insert" parameterClass="customer">
+        insert into customer (COMPANY_ID, COMPANY_NAME, SHORT_NAME, COMPANY_NAME_E, COMPANY_ADDRESS,
+          COMPANY_ADDRESS_E, POST_CODE, LINKMAN_IDS, WEB_ADDRESS)
+        values (#companyId:INTEGER#, #companyName:VARCHAR#, #shortName:VARCHAR#, #companyNameE:VARCHAR#,
+          #companyAddress:VARCHAR#, #companyAddressE:VARCHAR#, #postCode:CHAR#, #linkmanIds:VARCHAR#, #webAddress:VARCHAR#)
+    </insert>
+
+    <update id="updateByPK" parameterClass="customer">
+        update customer
+        set COMPANY_NAME = #companyName:VARCHAR#,
+          SHORT_NAME = #shortName:VARCHAR#,
+          COMPANY_NAME_E = #companyNameE:VARCHAR#,
+          COMPANY_ADDRESS = #companyAddress:VARCHAR#,
+          COMPANY_ADDRESS_E = #companyAddressE:VARCHAR#,
+          POST_CODE = #postCode:CHAR#,
+          LINKMAN_IDS = #linkmanIds:VARCHAR#,
+          WEB_ADDRESS = #webAddress:VARCHAR#
+        where COMPANY_ID = #companyId:INTEGER#
+    </update>
+
+    <update id="updateByPKSelective" parameterClass="customer">
+        update customer
+        <dynamic prepend="set">
+            <isNotEmpty prepend="," property="companyName">
+                COMPANY_NAME = #companyName:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="shortName">
+                SHORT_NAME = #shortName:VARCHAR#,
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="companyNameE">
+                COMPANY_NAME_E = #companyNameE:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="companyAddress">
+                COMPANY_ADDRESS = #companyAddress:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="companyAddressE">
+                COMPANY_ADDRESS_E = #companyAddressE:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="postCode">
+                POST_CODE = #postCode:CHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="linkmanIds">
+                LINKMAN_IDS = #linkmanIds:VARCHAR#
+            </isNotEmpty>
+            <isNotEmpty prepend="," property="webAddress">
+                WEB_ADDRESS = #webAddress:VARCHAR#
+            </isNotEmpty>
+        </dynamic>
+        where COMPANY_ID = #companyId:INTEGER#
+    </update>
+
+</sqlMap>

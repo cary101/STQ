@@ -1,0 +1,44 @@
+@charset "utf8";
+
+*{margin:0px;padding:0px;}
+
+.Area1{width:960px;margin:0 auto;clear:both;z-index:1;}
+
+.Hr_1,.Hr_2,.Hr_3,.Hr_4,.Hr_5,.Hr_6,.Hr_7,.Hr_8,.Hr_9,.Hr_10,.Hr_20{font-size:1px;line-height:1px;clear:both;}
+.Hr_1{height:1px;}.Hr_2{height:2px;}.Hr_3{height:3px;}.Hr_4{height:4px;}.Hr_5{height:5px;}.Hr_6{height:6px;}.Hr_7{height:7px;}.Hr_8{height:8px;}.Hr_9{height:9px;}.Hr_10{height:10px;}.Hr_20{height:20px;}
+
+.Logo{ height:45px; width:180px; border-right:1px solid #CCCCCC;}
+.Login{background:#fcfcfc; border:#e4e4e4 solid 1px; width:355px; background-image:url(http://simg.instrument.com.cn/vip/20120910/images/login.gif); background-position:top right; background-repeat:no-repeat; margin-left:50px;}
+/*--------------------------------------------Float*/
+.L{ float:left}.R{ float:right}.Cl{clear:both}
+.N{font-weight:normal; font-style:normal;}.B{font-weight:bold;}.I{font-style:italic;}
+
+/*--------------------------------------------Font*/
+.Fa{font-family:Arial;}.Fg{font-family:Georgia;}.Ft{font-family:Tahoma;}.Fl{font-family:Lucida Console;}.Fs{font-family:'宋体';}.Fw{font-family:'微软雅黑';}
+.F0{font-size:0;}.F10{font-size:10px;}.F12{font-size:12px;}.F13{font-size:13px;}.F14{font-size:14px;}.F16{font-size:16px;}.F18{font-size:18px;}.F20{font-size:20px;}.F24{font-size:24px;}
+
+/*--------------------------------------------Color*/
+.G0{color:#000;}.G2{color:#222;}.G3{color:#333;}.G4{color:#444;}.G6{color:#666;}.G9{color:#999;}.Gc{color:#ccc;}.Red{color:#bb0000;}.Orange{color:#e95a19;}.Wh{color:white;}.Blue{color:#3980c9;}.Blued2{color:#0055aa;}
+
+/*--------------------------------------------height*/
+.L18{line-height:18px;}.L19{ line-height:19px;}.L20{line-height:20px;}.L22{line-height:22px;}.L23{ line-height:23px}
+.L24{ line-height:24px}.L25{ line-height:25px}.L26{ line-height:26px;}.L28{ line-height:28px;}.L30{ line-height:30px;}.L35{ line-height:35px;}.L40{ line-height:40px;}
+
+.LeftW{width:470px; height:430px;}
+.RightW{width:478px;}
+.MidLine{width:1px; margin-left:10px; display:inline;height:470px; background:url(http://simg.instrument.com.cn/vip/20120910/images/line.gif) no-repeat;}
+.PLR5{ padding:0 5px }
+.P10{ padding:10px }
+.Di{display:inline;}
+
+.Tc{text-align:center;}.Tr{text-align:right;}.Tl{text-align:left;}
+
+.BoxM5{height:35px;width:240px; display:block; background:url(http://simg.instrument.com.cn/vip/20120910/images/250k.gif); border:none;padding-left:10px; display:inline;}
+
+.error{color: red;}
+
+.Footer{ height:80px; border-top:1px solid #888888; line-height:50px;}
+
+.Menu{ background:url(http://simg.instrument.com.cn/vip/20120910/images/menu2.gif)}
+.mn1{ width:84px; height:31px; background-position:0px 0px;}
+.mn2{ width:130px; height:28px; background-position:0px -32px;}
