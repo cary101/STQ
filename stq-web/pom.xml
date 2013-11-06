@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>cary.stq</artifactId>
-        <groupId>com.cary.stq</groupId>
+        <groupId>com.cary</groupId>
+        <artifactId>stq</artifactId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -15,7 +15,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.cary.stq</groupId>
+            <groupId>com.cary</groupId>
             <artifactId>stq-common</artifactId>
             <version>1.0</version>
         </dependency>
