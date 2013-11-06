@@ -30,7 +30,7 @@
         <jsp.version>2.2</jsp.version>
         <cglib.version>2.2.2</cglib.version>
         <sitemesh.version>2.4.2</sitemesh.version>
-        <jasper.version>5.0.1</jasper.version>
+        <jasper.version>5.5.0</jasper.version>
         <ehcache.version>2.5.0</ehcache.version>
         <json-lib.version>2.4</json-lib.version>
 
