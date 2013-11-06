@@ -85,3 +85,12 @@ IReport 组件面板：ctrl+shift+8
 
  7.java.lang.NoClassDefFoundError: org/apache/commons/collections/ReferenceMap
  出现上述错误提示加入 commons-collections-2.1.jar   iReport/lib
+ 
+ 
+ 
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:cary101/stq1.git
+git push -u origin master
