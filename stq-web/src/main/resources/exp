@@ -87,7 +87,7 @@ IReport 组件面板：ctrl+shift+8
  出现上述错误提示加入 commons-collections-2.1.jar   iReport/lib
  
  
- 
+git 
 touch README.md
 git init
 git add README.md
