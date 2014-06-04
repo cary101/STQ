@@ -20,6 +20,11 @@
             <version>1.0</version>
         </dependency>
         <dependency>
+            <groupId>com.cary</groupId>
+            <artifactId>scheduler</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.cary.stq</groupId>
             <artifactId>stq-service</artifactId>
             <version>1.0</version>

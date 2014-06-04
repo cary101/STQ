@@ -1,8 +1,8 @@
 /*
-SQLyog 企业版 - MySQL GUI v8.14 
+SQLyog 企业版 - MySQL GUI v8.14
 MySQL - 5.5.27 : Database - stq
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -151,6 +151,29 @@ CREATE TABLE `sample` (
 /*Data for the table `sample` */
 
 insert  into `sample`(`SAMPLE_ID`,`NAME`,`QUANTITY`,`EXPRESS_NO`,`MODEL_NO`,`MAY_COVER_MODEL`,`MAIN_METERIAL`,`LOT_NO`,`REVEICED_DT`,`BUYER`,`SUPPLIER`,`ISLIQUID`,`LIQUID_METHOD`,`PHOTO_REQURIMENT`,`SPECIFIC_REQURIMENT`,`CONCENTRATION_GT1`,`DANGEROUS_CODE`,`DANGEROUS_REMARKS`) values (000000001,'望远镜',2,'1231313','CX1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,NULL,'Y','2,3,5',NULL),(000000002,'淋浴器',4,'6848','SOIOI','a','b','c',NULL,'e','f',NULL,'1','1','1','N','2,5,6','1'),(000000003,'保温杯盖',12,'56456','IIIk',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,NULL,'Y','3,4',NULL),(000000006,'保温杯盖保',NULL,NULL,'123','999','9','999',NULL,'99','9',NULL,'1',NULL,NULL,'N','3,4',''),(000000007,'保温杯盖保温杯盖',NULL,NULL,'123','','','',NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,''),(000000008,'保温杯盖保温杯盖',NULL,NULL,'123','','','',NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,''),(000000009,'保温杯盖保温杯盖',NULL,NULL,'123','','','',NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,''),(000000010,'haha',NULL,NULL,'ha','ha','ha','ha',NULL,'ha','ha',NULL,'1',NULL,NULL,'N','3,4,5,8',''),(000000011,'保温杯盖保温杯盖',NULL,NULL,'abcabc','abc','abc','abc',NULL,'abc','abc',NULL,'1',NULL,NULL,NULL,'1,3,5,7,99','huiuu');
+
+/*Table structure for table `scheduling_history` */
+
+DROP TABLE IF EXISTS `scheduling_history`;
+
+CREATE TABLE `scheduling_history` (
+  `ID` int(10) NOT NULL,
+  `JOB_NAME` varchar(50) DEFAULT NULL,
+  `JOB_GROUP` varchar(50) DEFAULT NULL,
+  `JOB_DESCRIPTION` varchar(80) DEFAULT NULL,
+  `FIRE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `END_TIME` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `NEXT_FIRE_TIME` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `JOB_RUN_TIME` int(11) DEFAULT NULL,
+  `RESULT` varchar(100) DEFAULT NULL,
+  `REFIRE_COUNT` int(11) DEFAULT NULL,
+  `BEAN_NAME` varchar(60) DEFAULT NULL,
+  `PARAM` varchar(500) DEFAULT NULL,
+  `EXCEPTION_MESSAGE` varchar(100) DEFAULT NULL,
+  `EXCEPTION_DETAIL` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `scheduling_history` */
 
 /*Table structure for table `testitems` */
 
