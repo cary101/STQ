@@ -1,6 +1,6 @@
 package com.cary.scheduler.to;
 
-import com.founder.rhip.scheduling.core.JaxbDateAdapter;
+import com.cary.scheduler.core.JaxbDateAdapter;
 import org.quartz.CronTrigger;
 import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * 触发器DTO
  * 
- * @author liuk
+ * @author Cary
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)

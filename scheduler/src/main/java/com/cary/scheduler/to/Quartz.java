@@ -6,7 +6,7 @@
 ///**
 // * 任务和触发器DTO
 // *
-// * @author liuk
+// * @author Cary
 // *
 // */
 //@Deprecated

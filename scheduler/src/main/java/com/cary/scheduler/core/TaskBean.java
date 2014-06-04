@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 
 /**
  * 任务描述
- * @author liuk
+ * @author Cary
  * 
  */
 @Target({ java.lang.annotation.ElementType.TYPE })

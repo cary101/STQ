@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * 任务
  * 
- * @author liuk
+ * @author Cary
  * 
  */
 public interface Task {

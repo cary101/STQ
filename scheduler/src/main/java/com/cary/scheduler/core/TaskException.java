@@ -3,7 +3,7 @@ package com.cary.scheduler.core;
 /**
  * 任务异常
  * 
- * @author liuk
+ * @author Cary
  * 
  */
 public class TaskException extends RuntimeException {

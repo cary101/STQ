@@ -3,20 +3,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>stq-common</artifactId>
         <groupId>com.cary</groupId>
+        <artifactId>stq</artifactId>
         <version>1.0</version>
-        <relativePath>../stq-common/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.cary</groupId>
     <artifactId>scheduler</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>1.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cary</groupId>
+            <artifactId>stq-common</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 

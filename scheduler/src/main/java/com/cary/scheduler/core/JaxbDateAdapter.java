@@ -1,7 +1,9 @@
 package com.cary.scheduler.core;
 
-import com.founder.fasf.util.DateUtil;
-import com.founder.fasf.util.ObjectUtil;
+import com.cary.stq.utils.DateUtil;
+import com.cary.stq.utils.ObjectUtil;
+import com.cary.stq.utils.StringUtils;
+
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.Date;
@@ -12,10 +14,10 @@ public class JaxbDateAdapter extends XmlAdapter<String, Date> {
 
 	@Override
 	public Date unmarshal(String dateStr) throws Exception {
-		if (ObjectUtil.isNullOrEmpty(dateStr)) {
+		if (StringUtils.isEmpty(dateStr)) {
 			return null;
 		}
-		return DateUtil.parseSimpleDate(dateStr, pattern);
+		return DateUtil.parse(dateStr, pattern);
 	}
 
 	@Override
@@ -23,7 +25,7 @@ public class JaxbDateAdapter extends XmlAdapter<String, Date> {
 		if (ObjectUtil.isNullOrEmpty(date)) {
 			return null;
 		}
-		return DateUtil.toFormatString(pattern, date);
+		return DateUtil.format(date, pattern);
 	}
 
 }

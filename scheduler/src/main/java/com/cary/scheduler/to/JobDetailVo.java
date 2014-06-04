@@ -10,10 +10,10 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
 
 /**
- * 任务详细DTO
- * @author liuk
- *
- */
+* 任务详细DTO
+* @author Cary
+*
+*/
 @XmlAccessorType(XmlAccessType.FIELD)
 public class JobDetailVo {
 
